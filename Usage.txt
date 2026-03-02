@@ -1,0 +1,18 @@
+import numpy as np
+from simple_nbody import SimpleNBody
+
+# 1. Setup Initial Conditions
+N = 1000
+pos = np.random.randn(N, 3) # Random positions
+vel = np.zeros((N, 3))      # Cold start
+mass = np.ones(N) / N       # Normalized mass
+
+# 2. Initialize Simulation
+sim = SimpleNBody(pos, vel, mass, softening=0.05)
+
+# 3. Run
+print("Running...")
+for i in range(1000):
+    sim.step(dt=0.01)
+    
+print("Final Position of Particle 0:", sim.pos[0])
